@@ -36,7 +36,9 @@ The source code for the server can be found in the `server.py` file.
 
 The server contains many endpoints, which can be used to access and modify the Trie.
 The Homepage (which contains a welcome message to the API) and the Display page can be accessed using a GET request.
-The Add, Delete, Search, and Autocomplete endpoints will be accessed using a POST request, with the necessary data provided in the `x-www-form-urlencoded` format.  
+The Add, Delete, Search, and Autocomplete endpoints will be accessed using a POST request, with the necessary data provided in the `x-www-form-urlencoded` format.
+The data required is a value called `key`, with the string of characters to add, delete, search, or autocomplete for.
+The server can be tested using curl, by curling to this URL: http://flask-env.eba-pxjvpazg.us-east-2.elasticbeanstalk.com/
 
 The server contains one Trie, stored in a global state. All endpoints will either access or update this Trie. 
 Additionally, the webserver is not threaded, which means requests will be processed in the order they are received.
