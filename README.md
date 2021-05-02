@@ -43,7 +43,10 @@ Additionally, the webserver is not threaded, which means requests will be proces
 
 ## Client
 ### Command-Line Interface
-The Command-Line Interface can be accessed by running the `client.py` file.  
+The Command-Line Interface can be accessed by running the `client.py` file.
+First, download or clone the repository to your computer.
+Then, run the `client.py` file to load the CLI Interface!  
+> Note: You will need Python 3.x installed in order to run the CLI.
 
 The client allows the user to perform 5 actions, namely to display the trie, add an element, delete an element, search for an element, and to get autocomplete suggestions.
 The client also allows users to quit the CLI.
