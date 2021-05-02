@@ -20,7 +20,12 @@ There were some other major issues that I faced during the process of coding thi
 For example, my computer started experiencing random slowness, and apps kept crashing.
 I had to completely wipe and reset my computer to fix this issue.
 However, after the wipe, the available RAM on my computer felt so small, so when I had both a browser tab and my IDE open, the browser tabs would not load due to not enough memory.
-All these issues were very frustrating, but I perservered through them to make a working server, client, and model that works amazingly!
+All these issues were very frustrating, but I perservered through them to make a working server, client, and model that works perfectly!
+
+I really enjoyed this challenge, because of many reasons. 
+It was a perfect mix of what I did know and what I didn't know, which made it very challenging but fun at the same time.
+Plus, having a due date for the project made me focus and work hard to finish it before the deadline.
+I hope you enjoy using the Trie!
 
 ## Server
 ### REST API
@@ -40,9 +45,29 @@ Additionally, the webserver is not threaded, which means requests will be proces
 ### Command-Line Interface
 The Command-Line Interface can be accessed by running the `client.py` file.  
 
-The client allows the user to perform 5 actions, namely to display the trie, add an element, delete an element, search for an element, and to get autocomplete suggestions.  
+The client allows the user to perform 5 actions, namely to display the trie, add an element, delete an element, search for an element, and to get autocomplete suggestions.
+The client also allows users to quit the CLI.
 
-These actions all send GET or POST requests to the server, hosted on AWS.
+All the Trie-related actions send GET or POST requests to the server, hosted on AWS.
+
+## Unit Tests
+The Unit Tests for the Trie were written using the `unittest` module in Python. 
+Two unit tests were created, which check the validity of JSON responses, the global state of the Trie, and order of processing requests.
+
+### Validity Test
+This test runs every function possible, to make sure that the JSON responses returned are valid.
+Additionally, it makes sure no change was made to the global Trie at the end of the test.
+
+### Global State Test
+This test adds an element to the global Trie and then immediately searches to make sure the element was added.
+This makes sure that the new element is present during the second request (made individually), immediately after it was added.
+Additionally, it makes sure to remove the newly added element so that no change is made to the global Trie at the end of the test.
+
+### Processing Order Test
+The order of processing requests is tested on both the Validity Test and the Global State Test.
+In the validity test, the search and autocomplete are checked right after the given string is added to the Trie, and right before it is removed.
+The validity test makes sure that the search and autocomplete functions return True and an empty list, respectively.
+Additionally, the Global State Test does something similar, and will not work when requests are processed asynchronously.
 
 ## Model
 The model for the Trie uses two Python Classes - `class Trie` and `class TrieElement`. 
