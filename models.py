@@ -8,7 +8,12 @@ class Trie:
             self.start.add(name)
             return
         for letter in name[:-1]:
-            current = current.next(letter)
+            next = current.next(letter)
+            if not next:
+                current.add(letter)
+                current = current.next(letter)
+            else:
+                current = next
         current.add(name[-1])
 
     def delete(self, name):
