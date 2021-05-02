@@ -1,8 +1,14 @@
+# Class for a Trie
 class Trie:
     def __init__(self):
-        self.start = TrieElement("", None)
+        self.start = TrieElement("", None)  # Sets the starting Trie Element
 
+    # Adds to the Trie
     def add(self, name):
+        if not isinstance(name, str):
+            return False
+        if len(name) < 1:
+            return False
         current = self.start
         if len(name) == 1:
             self.start.add(name)
@@ -15,13 +21,19 @@ class Trie:
             else:
                 current = next
         current.add(name[-1])
+        return True
 
+    # Deletes from the Trie
     def delete(self, name):
         current = self.start
         for letter in name[:-1]:
             current = current.next(letter)
+            if not current:
+                return False
         current.delete(name[-1])
+        return True
 
+    # Searches in the Trie
     def search(self, name):
         current = self.start
         for letter in name:
@@ -30,12 +42,16 @@ class Trie:
                 return False
         return True
 
+    # Generates Autocomplete
     def autocomplete(self, name):
         current = self.start
         for letter in name:
             current = current.next(letter)
-        return [n.name for n in current.next()]
+            if not current:
+                return False, False
+        return True, [n.name for n in current.next()]
 
+    # Displays the Trie
     def display(self, current=None, level=0, special=False):
         if not current:
             current = self.start
@@ -68,14 +84,16 @@ class Trie:
         return self.display()
 
 
-
+# Class for an element in the Trie
 class TrieElement:
+    # Sets the name, children, and parent
     def __init__(self, name, parent):
         self.name = name
         self.children = []
         self.has_children = False
         self.parent = parent
 
+    # Returns a child or all its children
     def next(self, name=None):
         if not name:
             return self.children
@@ -84,11 +102,15 @@ class TrieElement:
                 return child
         return None
 
+    # Adds a child
     def add(self, name):
         if not self.has_children:
             self.has_children = True
+        if name in [n.name for n in self.children]:
+            return
         self.children.append(TrieElement(name, self))
 
+    # Deletes a child
     def delete(self, name):
         for x, child in enumerate(self.children):
             if child.name == name:
@@ -99,6 +121,8 @@ class TrieElement:
     def __repr__(self):
         return self.name
 
+
+# Some testing code
 if __name__ == "__main__":
     trie = Trie()
     trie.add("a")
