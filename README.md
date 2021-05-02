@@ -3,6 +3,25 @@
 ## Description
 This is a REST API and Command-Line Interface (CLI) used to access, store, and modify keys in a Trie.
 
+## The Process
+The only major part of the project which I had experience with was the Flask REST API.
+The rest was all out of my comfort zone.  
+
+After making the basic API and CLI, I originally thought of deploying the server to Heroku.
+I had experience using Heroku, and it works just as well as other hosting services.
+However, I was mistaken. 
+Heroku had many limitations, like that it does not support global states and that requests are not processed in the order that they are received in.
+This meant I had to attempt using another Cloud Service, such as AWS or GCP. 
+It took a lot of hard work, and after figuring out a lot of things, I finally deployed the server to AWS.
+As a relief, the global state worked, and requests were processed correctly too.
+It felt amazing, since I had never done it before and had finally figured it out.  
+
+There were some other major issues that I faced during the process of coding this (which is why it took so long).
+For example, my computer started experiencing random slowness, and apps kept crashing.
+I had to completely wipe and reset my computer to fix this issue.
+However, after the wipe, the available RAM on my computer felt so small, so when I had both a browser tab and my IDE open, the browser tabs would not load due to not enough memory.
+All these issues were very frustrating, but I perservered through them to make a working server, client, and model that works amazingly!
+
 ## Server
 ### REST API
 The REST API can be found [here](http://flask-env.eba-pxjvpazg.us-east-2.elasticbeanstalk.com/). 
