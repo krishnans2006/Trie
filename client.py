@@ -9,6 +9,9 @@ headers = {
     "Content-Type": "application/x-www-form-urlencoded"
 }
 
+# Sets the domain
+DOMAIN = os.getenv("DOMAIN", default="http://flask-env.eba-pxjvpazg.us-east-2.elasticbeanstalk.com/")
+
 
 # Sends the actions message
 def send_actions():
@@ -18,7 +21,7 @@ def send_actions():
 
 # Functions to send requests to the API and provide data
 def view():
-    display = requests.get(os.getenv("DOMAIN") + "/display").json()
+    display = requests.get(DOMAIN + "/display").json()
     try:
         print(display["Result"])
     except:
@@ -26,7 +29,7 @@ def view():
 
 
 def add(value):
-    display = requests.post(os.getenv("DOMAIN") + "/add", headers=headers, data={"key": value}).json()
+    display = requests.post(DOMAIN + "/add", headers=headers, data={"key": value}).json()
     try:
         print(display["Result"])
     except:
@@ -34,7 +37,7 @@ def add(value):
 
 
 def delete(value):
-    display = requests.post(os.getenv("DOMAIN") + "/delete", headers=headers, data={"key": value}).json()
+    display = requests.post(DOMAIN + "/delete", headers=headers, data={"key": value}).json()
     try:
         print(display["Result"])
     except:
@@ -42,7 +45,7 @@ def delete(value):
 
 
 def search(value):
-    display = requests.post(os.getenv("DOMAIN") + "/search", headers=headers, data={"key": value}).json()
+    display = requests.post(DOMAIN + "/search", headers=headers, data={"key": value}).json()
     try:
         print(display["Result"])
     except:
@@ -50,7 +53,7 @@ def search(value):
 
 
 def autocomplete(value):
-    display = requests.post(os.getenv("DOMAIN") + "/autocomplete", headers=headers, data={"key": value}).json()
+    display = requests.post(DOMAIN + "/autocomplete", headers=headers, data={"key": value}).json()
     try:
         print("Your Autocomplete Suggestions:\n", ", ".join(display["Result"]))
     except:
