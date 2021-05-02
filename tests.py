@@ -13,8 +13,9 @@ DOMAIN = os.getenv("DOMAIN", default="http://flask-env.eba-pxjvpazg.us-east-2.el
 
 # The Unit Test for the Trie
 class TestTrie(unittest.TestCase):
+
+    # Make sure all endpoints return valid json responses
     def test_errors(self):
-        # Make sure all endpoints return valid json responses
         self.assertIsNotNone(requests.get(DOMAIN + "/display").json().get("Result"))
         self.assertIsNotNone(
             requests.post(DOMAIN + "/add", headers=headers, data={"key": "atest"}).json().get("Result"))
@@ -26,6 +27,8 @@ class TestTrie(unittest.TestCase):
         self.assertIsNotNone(
             requests.post(DOMAIN + "/delete", headers=headers, data={"key": "atest"}).json().get("Result"))
 
+    # Tests the global state of the Trie
+    # Also tests the order of processing the requests
     def test_global_state(self):
         # Adding the string to the Trie
         requests.post(DOMAIN + "/add", headers=headers, data={"key": "thisisatest"})
@@ -40,4 +43,5 @@ class TestTrie(unittest.TestCase):
 
 
 if __name__ == "__main__":
+    # Run the Unit Test
     unittest.main()
