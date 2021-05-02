@@ -76,13 +76,6 @@ class TrieElement:
         self.has_children = False
         self.parent = parent
 
-    def get_arr(self):
-        arr = [self.__repr__()]
-        if self.has_children:
-            for child in self.children:
-                arr.append(child.get_arr())
-        return arr
-
     def next(self, name=None):
         if not name:
             return self.children
